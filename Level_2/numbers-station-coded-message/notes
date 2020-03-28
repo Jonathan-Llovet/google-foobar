@@ -1,0 +1,159 @@
+Input:
+solution.solution([1, 2, 3, 4], 15)
+Output:
+    -1,-1
+
+Input:
+solution.solution([4, 3, 10, 2, 8], 12)
+Output:
+    2,3
+
+
+def solution(l, t):
+    start = 0
+    calculated = dict({})
+    # Checks for sublists of length 1 that equal target
+    for index in range(len(l)):
+        if l[index] == t:
+            return [index, index]
+    
+    for index in range(len(l))
+
+    # for each index in range
+    # check whether sublists of increasing size equal target
+    # verify whether the sublist has already been calculated
+    # if not calculate and store result for reference
+    # if yes, retrieve result and process
+
+    l2 = [4, 3, 10, 2, 8]
+    t2 = 12
+
+    l3 = [4, 3, 6, 10, 2, 8]
+    t3 = 12
+
+Case 2
+    [0,0], 4
+    [0,1], 7
+    [0,2], 17 # break
+    [1,2], 13 # break
+    [2,3], 12
+
+Case 3
+    [0,0], 4
+    [0,1], 7
+    [1,2], 9
+    [0,2], 13 #break
+    # [1,2], 9
+    [2,3], 16
+    [1,3], 19
+
+t = 13
+for i in range(len(l) + 1):
+    for j in range(i, len(l) + 1):
+        a = sum_sublist(l, i, j)
+        print a
+        if a > t:
+            break
+    
+
+
+
+    if str([start, end]) not in calculated.keys():
+        calculated.update({str([start,end]): sum_sublist(l, start, end)})
+
+
+        # print calculated
+        for j in range(i, len(l)):
+            starting_index + 1
+            calculated.update({str([i,i]): i+i})
+
+
+def sum_sublist(l, start, end):
+    if start == end:
+        return l[start]
+    subtotal = 0
+    for i in range(start, end+1):
+        subtotal += l[i]
+        return subtotal
+
+if str([start, end]) not in calculated.keys():
+    calculated.update({str([start,end]): sum_sublist(l, start, end)})
+
+
+l1 = [1, 2, 3, 4]
+t1 = 15
+
+l2 = [4, 3, 10, 2, 8]
+t2 = 12
+
+print solution(l1, t1)
+print solution(l2, t2)
+
+
+# Input:
+# solution.solution([1, 2, 3, 4], 15)
+# Output:
+#     -1,-1
+
+# Input:
+# solution.solution([4, 3, 10, 2, 8], 12)
+# Output:
+#     2,3
+
+
+
+______________
+
+import timeit
+
+def solution(l, t):
+    # Your code here
+    # Increment end index for each starting index
+        # Keep track of intermediate calculations
+            # calculated = dict({})
+        # Solution found if sublist == t
+        # Break if sublist > t
+        # What's the best way to keep track of intermediate calculations?
+    # Run through sublists looking for solution
+    # This implentation prioritizes checking lower indices first
+    for start_index in range(len(l)):
+        # print "start_index: %d" % start_index
+        for end_index in range(start_index, len(l)):
+            # print "end_index: %d" % end_index
+            #refactor out nested loop if possible
+            a = sum_sublist(l, start_index, end_index)
+            # print "stats a: %d start_index: %d end_index: %d" % (a, start_index, end_index)
+            if a == t:
+                return [start_index, end_index]
+            # if a > t:
+            #     break
+    # If sublist cannot be found
+    return [-1, -1]
+
+def sum_sublist(l, start, end):
+    if start == end:
+        return l[start]
+    subtotal = 0
+    for i in range(start, end+1):
+        subtotal += l[i]
+    return subtotal
+
+# print timeit.timeit("print solution([1, 2, 3, 4], 15)", setup="from __main__ import solution, sum_sublist", number=100)
+# print timeit.timeit("print solution([4, 3, 10, 2, 8], 12)", setup="from __main__ import solution, sum_sublist", number=100)
+# print timeit.timeit("print solution([4, 3, 10, 2, 8, 2, 2], 12)", setup="from __main__ import solution, sum_sublist", number=100)
+
+import random
+def make_list():
+    l = []
+    for i in range(random.randint(0,100)):
+        l.append(random.randint(0,100))
+    return l
+
+run_times = []
+
+for i in range(100000):
+    run_times.append(timeit.timeit("solution(" + str(make_list()) + ", " + str(random.randint(0, 250)) + ")", setup="from __main__ import solution, sum_sublist", number=1))
+
+average = sum(run_times)/len(run_times)
+print "times run: {}".format(len(run_times))
+print "average {}".format(average)
