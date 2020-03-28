@@ -7,5 +7,5 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-CMD [ "python", "./solution.py" ]
+CMD [ "python", "./scratch.py" ]
 

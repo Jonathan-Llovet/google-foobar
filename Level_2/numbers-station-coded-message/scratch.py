@@ -22,10 +22,26 @@ def solution(l, t):
 def sum_sublist(l, start, end):
     if start == end:
         return l[start]
-    subtotal = 0
-    for i in range(start, end+1):
-        subtotal += l[i]
-    return subtotal
+    if start < end:
+        return l[start] + sum_sublist(l, (start + 1), end)
+
+# def sum_sublist(l, start, end):
+#     if start == end:
+#         return l[start]
+#     subtotal = 0
+#     for i in range(start, end+1):
+#         subtotal += l[i]
+#     return subtotal
+
+
+# Solution 1: Imperative
+# times run: 100000
+# average 5.09376835823e-05
+
+# Solution 2: Functional
+# times run: 100000
+# average 4.87596058846e-05
+
 
 import random
 def make_list():
@@ -37,8 +53,10 @@ def make_list():
 run_times = []
 
 for i in range(100000):
-    run_times.append(timeit.timeit("solution(" + str(make_list()) + ", " + str(random.randint(0, 250)) + ")", setup="from __main__ import solution, sum_sublist", number=10))
+    run_times.append(timeit.timeit("solution(" + str(make_list()) + ", " + str(random.randint(0, 250)) + ")", setup="from __main__ import solution, sum_sublist", number=1))
 
-average = sum(run_times)/(10*len(run_times))
+average = sum(run_times)/len(run_times)
 print "times run: {}".format(len(run_times))
 print "average {}".format(average)
+
+
