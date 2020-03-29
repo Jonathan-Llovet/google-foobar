@@ -2,7 +2,7 @@ def solution(l, t):
     """ Verifies if substring exists in l containing encoded message with key t
 
     Args:
-        l: A list of integers potentially containing encoded message in sublist
+        l: A non-empty list of integers potentially containing encoded message
         t: An integer key to check for an encoded message
 
     Returns:
@@ -16,44 +16,30 @@ def solution(l, t):
         returned that indicates no encoded message was found. That list is:
 
         [-1, -1]
-        
-    Raises:
-        ...
 
     """
+    if isinstance(l, list) and not l:
+        raise IndexError("l must be a non-empty list. Empty list received.")
+
+    if not isinstance(l, list) or not isinstance(t, int):
+        raise TypeError("Invalid types. Expected list l and int t.\n" +
+                        "Received types l: {}, t: {}".format(type(l), type(t)))
+
     for start_index in range(len(l)):
+
         subtotal = l[start_index]
-        # Case where single entry equals target
+
+        # Check whether single entry equals target
         if subtotal == t:
             return [start_index, start_index]
+
+        # Add successive entries until target found or exceeded
         for end_index in range(start_index + 1, len(l)):
-            # Add each successive entry until target found or exceeded
             subtotal += l[end_index]
             if subtotal == t:
                 return [start_index, end_index]
             if subtotal > t:
                 break
+
     # Indicate that sublist was not found
     return [-1, -1]
-
-
-# Solution 1: Imperative sum_sublist
-# times run: 100000
-# average 5.09376835823e-05
-
-# Solution 2: Functional sum_sublist
-# times run: 100000
-# average 4.87596058846e-05
-
-# Solution 3: Functional sum_sublist, cache intermediate calculations
-# times run: 100000
-# average 0.000562442457676
-
-# Solution 4: Semi-functional sum_sublist defined outside solution,
-#             cache intermediate calculations
-# times run: 100000
-# average 0.00121669625998
-
-# Solution 5: Refactored version of solution without sum_sublist function
-# times run: 100000
-# average 2.51689338684e-05
