@@ -1,16 +1,30 @@
 def solution(l, t):
+    """ Verifies if substring exists containing coded message
+
+    Args:
+        l: ...
+        t: ...
+    Returns:
+        ...
+    Raises:
+        ...
+
+    """
     for start_index in range(len(l)):
         subtotal = l[start_index]
+        # Case where single entry equals target
         if subtotal == t:
             return [start_index, start_index]
         for end_index in range(start_index + 1, len(l)):
+            # Add each successive entry until target found or exceeded
             subtotal += l[end_index]
             if subtotal == t:
                 return [start_index, end_index]
             if subtotal > t:
                 break
-    # Sublist was not found
+    # Indicate that sublist was not found
     return [-1, -1]
+
 
 # Solution 1: Imperative sum_sublist
 # times run: 100000

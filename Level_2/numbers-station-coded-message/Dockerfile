@@ -4,8 +4,10 @@ WORKDIR /usr/src/app
 
 # COPY requirements.txt ./
 # RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install pylint
 
 COPY . .
 
-CMD [ "python", "./scratch.py" ]
+CMD [ "pylint", "./solution.py" ]
+# CMD [ "python", "./scratch.py" ]
 
