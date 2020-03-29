@@ -22,18 +22,25 @@ def solution(xs):
             contains_panel_with_zero_power = True
 
     if not positives and len(negatives) == 1:
+        # Best case scenario is zero power output for panel array. Looking bad.
         if contains_panel_with_zero_power:
             max_power = 0
         else:
-            max_power = smallest_negative
+            # Panel array is draining power. Ouch.
+            max_power = negatives.pop()
         return str(max_power)
 
+    # Ensures panels with negative outputs are in pairs to take
+    # advantage of the panels' wave stabilizer, which makes paired
+    # negative-output panels have a positive output together
     if positives and len(negatives) % 2 != 0:
         negatives.remove(smallest_negative)
 
     max_power = 1 # initialize (multiplicative identity constant)
-    positives.extend(negatives)
     panel_outputs = positives
+    panel_outputs.extend(negatives)
+
     for output in panel_outputs:
         max_power *= output
+
     return str(max_power)
