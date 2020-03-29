@@ -36,7 +36,7 @@ def solution(xs):
     if positives and len(negatives) % 2 != 0:
         negatives.remove(smallest_negative)
 
-    max_power = 1 # initialize (multiplicative identity constant)
+    max_power = 1 # initialize for multiplication
     panel_outputs = positives
     panel_outputs.extend(negatives)
 
