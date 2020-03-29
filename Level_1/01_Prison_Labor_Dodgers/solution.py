@@ -81,7 +81,7 @@ def bad3():
 
 # same_sets()
 # multiple()
-# run()
+run()
 # bad1()
 # bad2()
 # bad3()
