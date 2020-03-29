@@ -1,11 +1,22 @@
 def solution(l, t):
-    """ Verifies if substring exists containing coded message
+    """ Verifies if substring exists in l containing encoded message with key t
 
     Args:
-        l: ...
-        t: ...
+        l: A list of integers potentially containing encoded message in sublist
+        t: An integer key to check for an encoded message
+
     Returns:
-        ...
+        A list containing the start and end indices of sublist containing
+        encoded message, if one is found. This will be the first instance of a
+        sublist that sums to the key t within list l. For example:
+
+        [1, 3]
+
+        If no sublist is found that sums to the key t, then a list is
+        returned that indicates no encoded message was found. That list is:
+
+        [-1, -1]
+        
     Raises:
         ...
 
