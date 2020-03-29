@@ -1,20 +1,16 @@
 def solution(l, t):
     for start_index in range(len(l)):
-        # TODO: refactor out nested loop if possible
-        for end_index in range(start_index, len(l)):
-            subtotal = sum_sublist(l, start_index, end_index)
+        subtotal = l[start_index]
+        if subtotal == t:
+            return [start_index, start_index]
+        for end_index in range(start_index + 1, len(l)):
+            subtotal += l[end_index]
             if subtotal == t:
                 return [start_index, end_index]
             if subtotal > t:
                 break
     # Sublist was not found
     return [-1, -1]
-
-def sum_sublist(l, start, end):
-    if start == end:
-        return l[start]
-    if start < end:
-        return l[start] + sum_sublist(l, (start + 1), end)
 
 # Solution 1: Imperative sum_sublist
 # times run: 100000
@@ -32,3 +28,7 @@ def sum_sublist(l, start, end):
 #             cache intermediate calculations
 # times run: 100000
 # average 0.00121669625998
+
+# Solution 5: Refactored version of solution without sum_sublist function
+# times run: 100000
+# average 2.51689338684e-05
