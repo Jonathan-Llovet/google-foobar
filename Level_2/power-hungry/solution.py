@@ -1,15 +1,17 @@
 def solution(xs):
-    """Finds maximum power output of solar panel array
+    """Returns integer representing maximum power output of solar panel array
 
     Args:
-        ...
-    Returns:
-        ...
+        xs: List of integers representing power output of
+        each of the solar panels in a given array
     """
     negatives = []
     smallest_negative = None
     positives = []
     contains_panel_with_zero_power = False
+
+    if isinstance(xs, list) and not xs:
+        raise IndexError("xs must be a non-empty list. Empty list received.")
 
     for x in xs:
         if x > 0:
@@ -22,7 +24,7 @@ def solution(xs):
             contains_panel_with_zero_power = True
 
     if not positives and len(negatives) == 1:
-        # Best case scenario is zero power output for panel array. Looking bad.
+        # Best-case scenario is zero power output for panel array. Looking bad.
         if contains_panel_with_zero_power:
             max_power = 0
         else:
