@@ -31,18 +31,18 @@ def solution(l):
     unique_values = sorted(int_keys, reverse=True)
     
     secret_key_candidates = []
-
     for k in unique_values:
         for j in unique_values:
             if k % j == 0:
-                i = k / j
+                if j == 1:
+                    i = k
+                else:
+                    i = k / j
                 if i in unique_values:
                     candidate = sorted([i, j, k])
                     if candidate not in secret_key_candidates:
                         secret_key_candidates.append(candidate)
-
     # iterate over candidates and check indices against calculated
-   
     key_candidates = verify_secret_key_candidate_positions(secret_key_candidates, calculated, (0,1))
     secret_keys = verify_secret_key_candidate_positions(key_candidates, calculated, (1,2))
     access_codes = len(secret_keys)
@@ -65,17 +65,3 @@ def verify_secret_key_candidate_positions(secret_key_candidates, calculated, ind
             else:
                 secret_key_candidates.remove(candidate)
     return secret_key_candidates
-
-# # # Input:
-# print solution([1, 2, 3, 4, 5, 6])
-# # # Output:
-# # #     3
-
-# # # Input:
-# print solution([1, 1, 1])
-# # # Output:
-# # #     1
-
-# print solution([1, 2, 3, 4, 5, 6, 3, 2, 6, 18, 23, 45, 2])
-
-# print "************************************************"

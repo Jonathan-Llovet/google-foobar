@@ -1,0 +1,1 @@
+python2 tester2.py > results2.txt 2>&1
