@@ -16,9 +16,10 @@ def solution(l):
         An integer indicating how many access codes are present in list l
         If no access codes are found, 0 is returned.
     """
-    access_codes = 0
     
+    # def 
     meta = dict({})
+
 
     for k in range(len(l)):
         k_str = str(l[k])
@@ -33,8 +34,7 @@ def solution(l):
             k_indices = meta[k_str]["indices"]
             k_indices.append(k)
             k_divisors = meta[k_str]["divisors"]
-            
-            
+
             meta.update({
                 k_str: {
                     "indices": k_indices,
@@ -62,6 +62,14 @@ def solution(l):
 
     print "final"
     print meta
+    access_codes = find_access_codes(meta)
+    print access_codes
+    return access_codes
+
+
+def find_access_codes(meta):
+    access_codes = 0
+    return str(access_codes)
 
 
 # def test(l, expected):
@@ -78,14 +86,14 @@ def solution(l):
 #         print "FAILED"
 #     print "\n"
 
-# def test(l, expected):
-#     print "solution({})".format(str(l))
-#     print "************************************************"
-#     solution(l)
-#     print "************************************************"
+def test(l, expected):
+    print "solution({})".format(str(l))
+    print "************************************************"
+    solution(l)
+    print "************************************************"
 
-# test([1, 1], 0)
-# test([1, 1, 2], 1)
+test([1, 1], 0)
+test([1, 1, 2], 1)
 # test([1, 1, 1, 1], 1)
 # test([1, 1, 2, 1, 1], 2)
 # test([1, 1, 2, 1, 1, 2], 3)
@@ -105,24 +113,38 @@ def solution(l):
 
 # print "************************************************"
 
-def make_list():
+
+"""
+def make_list(upper_length=2001, upper_int=1000000, fixed=None):
     l = []
-    for i in range(random.randint(2, 2001)):
-        l.append(random.randint(1, 1000000))
-    return l
+    if fixed != None and isinstance(fixed, int):
+        for i in range(fixed+1):
+            l.append(random.randint(1, upper_int))
+        return l
+    else:
+        for i in range(random.randint(2, upper_length)):
+            l.append(random.randint(1, upper_int))
+        return l
 
-run_times = []
-list_lengths = []
 
-for i in range(10):
-    test_list = str(make_list())
-    list_lengths.append(len(test_list))
-    run_times.append(timeit.timeit("solution(" + test_list + ")", setup="from __main__ import solution", number=1))
+for test in range(2):
+    run_times = []
+    list_lengths = []
+    # if test == 0:
+    #     upper_length = 20
+    # else:
+    #     upper_length = test * 20 * 5
+    for i in range(10):
+        # test_list = make_list(upper_length=upper_length)
+        test_list = make_list(fixed=2000)
+        list_lengths.append(len(test_list))
+        run_times.append(timeit.timeit("solution(" + str(test_list) + ")", setup="from __main__ import solution", number=1))
 
-average_run_time = sum(run_times)/len(run_times)
-average_list_length = sum(list_lengths)/len(list_lengths)
-print "times run: {}".format(len(run_times))
-print "average run time {}".format(average_run_time)
-print "average list length {}".format(average_list_length)
+    average_run_time = sum(run_times)/len(run_times)
+    average_list_length = sum(list_lengths)/len(list_lengths)
+    print "times run: {}".format(len(run_times))
+    print "average run time {}".format(average_run_time)
+    print "average list length {}".format(average_list_length)
 
-print "************************************************"
+    print "************************************************"
+"""
