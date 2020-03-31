@@ -19,11 +19,13 @@ def solution(l):
 
     meta = generate_metadata(l)
     print "final: {}".format(meta)
-    access_codes = find_access_codes(meta)
+    candidates = find_access_code_candidates(meta)
+    access_codes = remove_bad_code_candidates(meta, candidates)
     print access_codes
-    return access_codes
+    return str(len(access_codes))
 
 def get_indices(l):
+    # print "in get_indices..."
     meta = dict({})
     for i, k in enumerate(l):
         k_str = str(k)
@@ -47,41 +49,77 @@ def get_indices(l):
             })
         # print k_str
         # print meta
+    # print "end get_indices..."
     return meta
 
 def calculate_divisors(meta):
-    print "in divisor calculation"
+    # print "in calculate_divisors..."
     for unique_value in meta.keys():
-        print "Outer loop unique_value: {}".format(unique_value)
+        # print "Outer loop unique_value: {}".format(unique_value)
         k = int(unique_value)
         k_indices = meta[unique_value]["indices"]
         k_divisors = meta[unique_value]["divisors"]
         for divisor_candidate in meta.keys():
-            print "divisor_candidate: {}".format(divisor_candidate)
+            # print "divisor_candidate: {}".format(divisor_candidate)
             candidate = int(divisor_candidate)
             if k % candidate == 0:
-                print "k mod candidate == 0: {}".format(k % candidate == 0)
+                # print "k mod candidate == 0: {}".format(k % candidate == 0)
                 if candidate not in k_divisors:
-                    print "Appending candidate: {}".format(candidate)
+                    # print "Appending candidate: {}".format(candidate)
                     k_divisors.append(candidate)
-                    print "k_divisors for {}: {}".format(unique_value, k_divisors)
+                    # print "k_divisors for {}: {}".format(unique_value, k_divisors)
+        print "k_divisors for {}: {}".format(unique_value, k_divisors)
         meta.update({
                 unique_value: {
                     "indices": k_indices,
                     "divisors": k_divisors
                 }
             })
+    # print "end calculate_divisors..."
     return meta
 
 def generate_metadata(l):
+    # print "in generate_metadata..."
     meta_indices = get_indices(l)
     meta = calculate_divisors(meta_indices)
+    # print "end generate_metadata..."
     return meta
 
 
-def find_access_codes(meta):
-    access_codes = 0
-    return str(access_codes)
+def find_access_code_candidates(meta):
+    # solution([31, 31, 1, 4, 2, 62])
+    # final: {'1': {'indices': [2], 'divisors': [1]}, '62': {'indices': [5], 'divisors': [1, 62, 2, 31]}, '2': {'indices': [4], 'divisors': [1, 2]}, '4': {'indices': [3], 'divisors': [1, 2, 4]}, '31': {'indices': [0, 1], 'divisors': [1, 31]}}
+
+    # solution([1, 1, 2])
+    # final: {'1': {'indices': [0, 1], 'divisors': [1]}, '2': {'indices': [2], 'divisors': [1, 2]}}
+    candidates = []
+    for i, k in meta.iteritems():
+        print str(i), str(k)
+        # 1 {'indices': [2], 'divisors': [1]}
+        # 62 {'indices': [5], 'divisors': [1, 62, 2, 31]}
+        # 2 {'indices': [4], 'divisors': [1, 2]}
+        # 4 {'indices': [3], 'divisors': [1, 2, 4]}
+        # 31 {'indices': [0, 1], 'divisors': [1, 31]}        
+        for divisor_1 in k['divisors']:
+            for divisor_2 in meta[str(divisor_1)]['divisors']:
+                if sorted((int(i), divisor_1, divisor_2)) not in candidates:
+                    candidates.append(sorted((int(i), divisor_1, divisor_2)))
+    
+    print "candidates: {}".format(candidates)
+    return candidates
+
+def remove_bad_code_candidates(meta, candidates):
+    # for index in meta[str(divisor)]['indices']
+    # if 
+    # Each number needs to have a divisor that in turn has a divisor in its list
+    # Use divisor as a reference and then check whether there is an option in order
+
+    # Special cases for 1 and i
+    pass
+
+
+
+
 
 
 # def test(l, expected):
