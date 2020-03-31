@@ -16,11 +16,15 @@ def solution(l):
         An integer indicating how many access codes are present in list l
         If no access codes are found, 0 is returned.
     """
-    
-    # def 
+
+    meta = generate_metadata(l)
+    print "final: {}".format(meta)
+    access_codes = find_access_codes(meta)
+    print access_codes
+    return access_codes
+
+def get_indices(l):
     meta = dict({})
-
-
     for i, k in enumerate(l):
         k_str = str(k)
         if k_str not in meta.keys():
@@ -43,9 +47,11 @@ def solution(l):
             })
         # print k_str
         # print meta
+    return meta
 
+def calculate_divisors(meta):
     print "in divisor calculation"
-    for unique_value in meta.keys():    
+    for unique_value in meta.keys():
         print "Outer loop unique_value: {}".format(unique_value)
         k = int(unique_value)
         k_indices = meta[unique_value]["indices"]
@@ -65,11 +71,12 @@ def solution(l):
                     "divisors": k_divisors
                 }
             })
+    return meta
 
-    print "final: {}".format(meta)
-    access_codes = find_access_codes(meta)
-    print access_codes
-    return access_codes
+def generate_metadata(l):
+    meta_indices = get_indices(l)
+    meta = calculate_divisors(meta_indices)
+    return meta
 
 
 def find_access_codes(meta):
