@@ -35,3 +35,6 @@ for i in range(len(l)):
         print indices
         calculated.update({str(l[i]): indices})
         print calculated
+
+docker build -t my-python-app .
+docker run -it --rm --name my-running-app my-python-app >> pylint_results.txt
