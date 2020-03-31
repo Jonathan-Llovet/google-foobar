@@ -21,18 +21,18 @@ def solution(l):
     meta = dict({})
 
 
-    for k in range(len(l)):
-        k_str = str(l[k])
+    for i, k in enumerate(l):
+        k_str = str(k)
         if k_str not in meta.keys():
             meta.update({
                 k_str: {
-                    "indices": [k],
+                    "indices": [i],
                     "divisors": []
                 }
             })
         elif k_str in meta.keys():
             k_indices = meta[k_str]["indices"]
-            k_indices.append(k)
+            k_indices.append(i)
             k_divisors = meta[k_str]["divisors"]
 
             meta.update({
@@ -44,24 +44,29 @@ def solution(l):
         # print k_str
         # print meta
 
-    for unique_value in meta.keys():
+    print "in divisor calculation"
+    for unique_value in meta.keys():    
+        print "Outer loop unique_value: {}".format(unique_value)
         k = int(unique_value)
         k_indices = meta[unique_value]["indices"]
         k_divisors = meta[unique_value]["divisors"]
-        for key in meta.keys():
-            divisor_candidate = int(key)
-            if k % divisor_candidate == 0:
-                if divisor_candidate not in k_divisors:
-                    k_divisors.append(divisor_candidate)
+        for divisor_candidate in meta.keys():
+            print "divisor_candidate: {}".format(divisor_candidate)
+            candidate = int(divisor_candidate)
+            if k % candidate == 0:
+                print "k mod candidate == 0: {}".format(k % candidate == 0)
+                if candidate not in k_divisors:
+                    print "Appending candidate: {}".format(candidate)
+                    k_divisors.append(candidate)
+                    print "k_divisors for {}: {}".format(unique_value, k_divisors)
         meta.update({
-                k_str: {
+                unique_value: {
                     "indices": k_indices,
                     "divisors": k_divisors
                 }
             })
 
-    print "final"
-    print meta
+    print "final: {}".format(meta)
     access_codes = find_access_codes(meta)
     print access_codes
     return access_codes
@@ -95,8 +100,8 @@ def test(l, expected):
 test([1, 1], 0)
 test([1, 1, 2], 1)
 # test([1, 1, 1, 1], 1)
-# test([1, 1, 2, 1, 1], 2)
-# test([1, 1, 2, 1, 1, 2], 3)
+test([1, 1, 2, 1, 1], 2)
+test([1, 1, 2, 1, 1, 2], 3)
 # test([1, 1, 2, 4, 1, 2], 5)
 # test([1, 1, 2, 1], 2)
 # test([1, 2, 3, 4, 5, 6], 3)
@@ -109,7 +114,7 @@ test([1, 1, 2], 1)
 # test([6,5,3,2,1], 0)
 # test([], 0)
 # test([3,2,5,2,1,6,8],2)
-# test([31, 31, 1, 4, 2, 62], 2)
+test([31, 31, 1, 4, 2, 62], 2)
 
 # print "************************************************"
 
