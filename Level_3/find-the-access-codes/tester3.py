@@ -316,20 +316,20 @@ def is_in_order(x_indices, y_indices, z_indices):
 
 
 
-def test(l, expected):
-    print "solution({})".format(str(l))
-    print "************************************************"
-    result = solution(l)
-    print "************************************************"
-    print "expected: {}".format(expected)
-    print "result: {}".format(result)
-    if result == str(expected):
-        print "solution({})".format(str(l))
-        print "PASSED"
-    else:
-        print "solution({})".format(str(l))
-        print "FAILED"
-    print "\n"
+# def test(l, expected):
+#     print "solution({})".format(str(l))
+#     print "************************************************"
+#     result = solution(l)
+#     print "************************************************"
+#     print "expected: {}".format(expected)
+#     print "result: {}".format(result)
+#     if result == str(expected):
+#         print "solution({})".format(str(l))
+#         print "PASSED"
+#     else:
+#         print "solution({})".format(str(l))
+#         print "FAILED"
+#     print "\n"
 
 # def test(l, expected):
 #     print "solution({})".format(str(l))
@@ -337,26 +337,30 @@ def test(l, expected):
 #     solution(l)
 #     print "************************************************"
 
-test([1, 1], 0)
-test([1, 1, 2], 1)
-test([1, 1, 1, 1], 1)
-test([1, 1, 2, 1, 1], 2)
-test([1, 1, 2, 1, 1, 2], 3)
-test([1, 1, 2, 4, 1, 2], 5)
-test([1, 1, 2, 1], 2)
-test([1, 2, 3, 4, 5, 6], 3)
-test([1, 1, 1], 1)
-test([2, 2, 2], 1)
-test([2, 4, 2], 0)
-test([2, 4, 12], 1)
-test([2, 4, 8], 1)
-test([2, 4, 8, 12, 16], 5)
-test([6,5,3,2,1], 0)
-test([], 0)
-test([3,2,5,2,1,6,8],2)
-test([31, 31, 1, 4, 2, 62], 2)
+# test([1, 1], 0)
+# test([1, 1, 2], 1)
+# test([1, 1, 1, 1], 1)
+# test([1, 1, 2, 1, 1], 2)
+# test([1, 1, 2, 1, 1, 2], 3)
+# test([1, 1, 2, 4, 1, 2], 5)
+# test([1, 1, 2, 1], 2)
+# test([1, 2, 3, 4, 5, 6], 3)
+# test([1, 1, 1], 1)
+# test([2, 2, 2], 1)
+# test([3, 3, 3], 1)
+# test([4, 4, 4], 1)
+# test([5, 5, 5], 1)
+# test([3, 3, 3], 1)
+# test([2, 4, 2], 0)
+# test([2, 4, 12], 1)
+# test([2, 4, 8], 1)
+# test([2, 4, 8, 12, 16], 5)
+# test([6,5,3,2,1], 0)
+# test([], 0)
+# test([3,2,5,2,1,6,8],2)
+# test([31, 31, 1, 4, 2, 62], 2)
 
-print "************************************************"
+# print "************************************************"
 
 
 
