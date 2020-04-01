@@ -35,11 +35,11 @@ def solution(l):
 def find_outbound_connections(l, node_index, node_value):
     outbound_connections = []
     for destination_index, destination_value in enumerate(l):
-            # avoids processing items out of order
-            # outbound connections must be to later elements in list
-            if destination_index > node_index:
-                if destination_value % node_value == 0:
-                    outbound_connections.append(str(destination_index))
+        # avoids processing items out of order
+        # outbound connections must be to later elements in list
+        if destination_index > node_index:
+            if destination_value % node_value == 0:
+                outbound_connections.append(str(destination_index))
     return outbound_connections
 
 def count_outbound_connections(graph, node):
