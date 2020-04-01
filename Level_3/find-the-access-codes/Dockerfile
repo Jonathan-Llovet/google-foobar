@@ -8,7 +8,7 @@ RUN pip install pylint
 
 COPY . .
 
-CMD [ "pylint", "./solution3.py" ]
+CMD [ "pylint", "./solution4.py" ]
 # CMD [ "pylint", "./lint.py" ]
 # CMD [ "python", "./scratch.py" ]
 # CMD [ "python", "./solution.py" ]
