@@ -38,10 +38,13 @@ class Node:
             child_value = self.remaining - i
             parent_value = self.value
             remaining = self.remaining
+            # if remaining - child_value > child_value:
+            #     continue
             if child_value < parent_value:
                 if child_value <= self.remaining:
                     child = Node(child_value, parent_value, remaining)
                     self.children.append(child)
 
-for n in range(1,201):
-    print solution(n)
+print solution(9)
+# for n in range(1,201):
+#     print solution(n)
