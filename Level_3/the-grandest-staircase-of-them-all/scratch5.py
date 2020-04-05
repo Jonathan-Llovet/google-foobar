@@ -4,7 +4,7 @@ from collections import deque as deque
 
 # for a given remaining_bricks, how many ways are there to combine decreasing integers to equal it?
 
-bricks = 3
+bricks = 200
 options = 0
 
 branch_capacities = dict({})
@@ -21,13 +21,13 @@ def get_children(node, remaining_bricks=None, branch_capacities=branch_capacitie
         remaining_bricks = node
     children_values = []
 
-    for child in range(1, remaining_bricks):
-        if child < 3:
-            print "handling child: {} with remaining_bricks: {}".format(child, remaining_bricks)
+    for child in range(1, remaining_bricks+1):
+        print "handling child: {} with remaining_bricks: {}".format(child, remaining_bricks)
+        if child == remaining_bricks:
             options += 1
             print "incrementing options: {}".format(options)
+        if child <= 3:
             continue
-
         if str(child) in branch_capacities.keys():
             # print "retrieving child: {} from branch_capacities: {}".format(child, branch_capacities)
             child_branch_capacity = branch_capacities[str(child)]
