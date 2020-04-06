@@ -61,6 +61,7 @@ class Node:
             if parent.value > options["largest_child"]:
                 return
             if parent.left == None:
+                
                 parent.left = Node(value, parent)
                 return
             return add_child(value, parent.left)
